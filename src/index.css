@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DESIGN TOKENS: warm editorial palette (ivory, ink, tangerine, olive, sand). Edit here only. */
+:root {
+  --bg: 245 241 232;       /* Warm Ivory #F5F1E8, main background */
+  --surface: 231 223 209;  /* Soft Sand #E7DFD1, cards and surfaces */
+  --fg: 23 33 29;          /* Deep Ink #17211D, primary text */
+  --muted: 84 94 88;       /* secondary text (ink, softened) */
+  --accent: 240 100 54;    /* Vivid Tangerine #F06436 */
+  --olive: 165 173 120;    /* Muted Olive #A5AD78, secondary accent */
+  --on-accent: 23 33 29;   /* text on tangerine: ink for contrast */
+  --ink: 23 33 29;
+  --radius: .75rem;
+}
+.dark { --bg: 17 24 21; --surface: 28 39 34; --fg: 245 241 232; --muted: 176 180 166; }
+/* Deep ink section used for rhythm. Works in light and dark themes. */
+.ink { --bg: 23 33 29; --surface: 35 48 42; --fg: 245 241 232; --muted: 176 180 166; background: rgb(var(--bg)); color: rgb(var(--fg)); }
+.dark .ink { --bg: 9 14 12; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { @apply bg-bg font-sans text-fg antialiased; transition: background-color .3s, color .3s; }
+h1, h2, h3 { font-family: Fraunces, Georgia, serif; }
+:focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 3px; border-radius: 6px; }
+
+@layer components {
+  .glass { @apply border border-fg/10 bg-surface; border-radius: var(--radius); }
+  .glow-border { @apply border-fg/20; }
+  .btn { @apply inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition duration-200; }
+  .btn-primary { @apply btn bg-accent text-on-accent hover:-translate-y-0.5 hover:brightness-95; }
+  .btn-ghost { @apply btn border border-fg/30 hover:border-fg hover:bg-fg hover:text-bg; }
+  .chip { @apply rounded-full border border-fg/15 bg-surface px-3.5 py-1.5 text-sm transition duration-200 hover:border-accent; }
+  .section { @apply mx-auto max-w-6xl px-5 py-24 sm:px-8; }
+}
+.bg-grid { display: none; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
